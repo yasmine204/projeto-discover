@@ -92,11 +92,24 @@ body * {
 	z-index: 1;
 
 	cursor: pointer;
+
+	/* Aplica a animação que faz o botão "voltar" para a esquerda */
+	animation: slide-back 0.2s;
+}
+
+.switch button:hover {
+	outline: 8px solid var(--highlight-color);
 }
 
 .light .switch button {
+	/* Aplica a animação que move o botão da esquerda para a direita 
+	   (usada quando o body tem a classe .light) */
+	animation: slide-go 0.2s forwards; /* forwards = mantém o botão na posição final após a animação */
+
+	/* Antes, o movimento era fixo com left/right, mas agora é controlado pela animação 
 	left: initial;
-	right: 0;
+	right: 0; 
+	*/
 }
 
 .switch span {
@@ -172,6 +185,7 @@ footer {
 	font-size: 14px;
 }
 
+/* Define estilos diferentes para telas maiores */
 @media (min-width: 700px) {
 	:root {
 		--bg-url: url("./assets/bg-desktop.jpg");
@@ -179,5 +193,26 @@ footer {
 
 	.light {
 		--bg-url: url("./assets/bg-desktop-light.jpg");
+	}
+}
+
+/* Animation */
+/* Animação que move o botão da esquerda para a direita (modo claro) */
+@keyframes slide-go {
+	from {
+		left: 0;
+	}
+	to {
+		left: 50%;
+	}
+}
+
+/* Animação que move o botão da direita de volta para a esquerda (modo escuro) */
+@keyframes slide-back {
+	from {
+		left: 50%;
+	}
+	to {
+		left: 0;
 	}
 }
